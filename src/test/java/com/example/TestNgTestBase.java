@@ -19,31 +19,18 @@ import com.example.util.PropertyLoader;
  */
 public class TestNgTestBase {
 
-  protected static String gridHubUrl;
-  protected static String baseUrl;
-  protected static Capabilities capabilities;
-
   protected WebDriver driver;
 
   @BeforeSuite
-  public void initTestSuite() throws IOException {
-    baseUrl = PropertyLoader.loadProperty("site.url");
-    gridHubUrl = PropertyLoader.loadProperty("grid.url");
-    if ("".equals(gridHubUrl)) {
-      gridHubUrl = null;
-    }
-    //capabilities = PropertyLoader.loadCapabilities();
-  }
-
-  @BeforeMethod
   public void initWebDriver() {
     System.setProperty("webdriver.chrome.driver", "./src/test/resources/chromedriver");
-    //driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);
     driver = new ChromeDriver();
   }
 
+
+
   @AfterSuite(alwaysRun = true)
   public void tearDown() {
-    WebDriverPool.DEFAULT.dismissAll();
+    driver.close();
   }
 }

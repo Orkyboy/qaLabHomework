@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class Header {
 
-    @FindBy(xpath = "//header//h1[@id='gh-l-h1']")
+    @FindBy(xpath = "//header//td[@class='gh-td']")
     public WebElement ebayLogo;
 
 }
